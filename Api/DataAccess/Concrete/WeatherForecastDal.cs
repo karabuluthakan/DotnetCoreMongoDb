@@ -5,9 +5,9 @@ using Microsoft.Extensions.Options;
 
 namespace Api.DataAccess.Concrete
 {
-    public class WeatherForecastDal : MongoRepositoryBase<WeatherForecast>, IWeatherForecastDal
+    public class WeatherForecastMongoDbDal : MongoRepositoryBase<WeatherForecast>, IWeatherForecastDal
     {
-        public WeatherForecastDal(IOptions<MongoDbSettings> options) : base(options)
+        public WeatherForecastMongoDbDal(IOptions<MongoDbSettings> options) : base(options)
         {
         }
     }
