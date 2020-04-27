@@ -23,7 +23,7 @@ namespace Api
         {
             services.AddControllers();
             services.AddMongoDbSettings(Configuration);
-            services.AddSingleton<IWeatherForecastDal, WeatherForecastDal>();
+            services.AddSingleton<IWeatherForecastDal, WeatherForecastMongoDbDal>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
