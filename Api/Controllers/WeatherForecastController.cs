@@ -1,4 +1,5 @@
-﻿using Api.DataAccess.Abstract;
+﻿using System.Linq;
+using Api.DataAccess.Abstract;
 using Api.Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,7 +25,7 @@ namespace Api.Controllers
                 return BadRequest("Not found");
             }
 
-            return Ok(result);
+            return Ok(result.ToList());
         }
 
         [HttpGet("{id}")]

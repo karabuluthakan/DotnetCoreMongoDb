@@ -44,7 +44,7 @@ namespace Api.DataAccess.Abstract
 
         public virtual async Task<bool> AddRangeAsync(IEnumerable<T> entities)
         {
-            var options = new BulkWriteOptions {IsOrdered = false};
+            var options = new BulkWriteOptions {IsOrdered = false, BypassDocumentValidation = false};
             return (await Collection.BulkWriteAsync((IEnumerable<WriteModel<T>>) entities, options)).IsAcknowledged;
         }
 
