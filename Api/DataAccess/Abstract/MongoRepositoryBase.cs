@@ -10,12 +10,12 @@ using MongoDB.Driver;
 
 namespace Api.DataAccess.Abstract
 {
-    public abstract class MongoRepositoryBase<T> : IRepository<T, string> where T : MongoDbEntity, new()
+    public abstract class MongoDbRepositoryBase<T> : IRepository<T, string> where T : MongoDbEntity, new()
     {
         protected readonly IMongoCollection<T> Collection;
         private readonly MongoDbSettings settings;
 
-        protected MongoRepositoryBase(IOptions<MongoDbSettings> options)
+        protected MongoDbRepositoryBase(IOptions<MongoDbSettings> options)
         {
             this.settings = options.Value;
             var client = new MongoClient(this.settings.ConnectionString);
