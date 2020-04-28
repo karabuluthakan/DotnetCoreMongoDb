@@ -31,7 +31,7 @@ namespace Api.Controllers
         [HttpGet("{id}")]
         public IActionResult GetById(string id)
         {
-            var result = weatherForecastDal.GetById(id).Result;
+            var result = weatherForecastDal.GetByIdAsync(id).Result;
             if (result == null)
             {
                 return BadRequest("Not found");
@@ -43,14 +43,14 @@ namespace Api.Controllers
         [HttpPost]
         public IActionResult Create([FromBody] WeatherForecast data)
         {
-            var result = weatherForecastDal.Add(data).Result;
+            var result = weatherForecastDal.AddAsync(data).Result;
             return Ok(result);
         }
 
         [HttpPut("{id}")]
         public IActionResult Update(string id, [FromBody] WeatherForecast data)
         {
-            var result = weatherForecastDal.Update(id, data).Result;
+            var result = weatherForecastDal.UpdateAsync(id, data).Result;
             if (result == null)
             {
                 return BadRequest("Not found");
@@ -62,7 +62,7 @@ namespace Api.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(string id)
         {
-            var result = weatherForecastDal.Delete(id).Result;
+            var result = weatherForecastDal.DeleteAsync(id).Result;
             if (result == null)
             {
                 return BadRequest("Not found");
