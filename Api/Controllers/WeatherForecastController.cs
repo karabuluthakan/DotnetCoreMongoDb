@@ -31,7 +31,7 @@ namespace Api.Controllers
         [HttpGet("{id}")]
         public IActionResult GetById(string id)
         {
-            var result = weatherForecastDal.GetByIdAsync(id).Result;
+            var result = weatherForecastDal.GetById(id).Result;
             if (result == null)
             {
                 return BadRequest("Not found");
@@ -43,7 +43,7 @@ namespace Api.Controllers
         [HttpPost]
         public IActionResult Create([FromBody] WeatherForecast data)
         {
-            var result = weatherForecastDal.AddAsync(data).Result;
+            var result = weatherForecastDal.Add(data).Result;
             return Ok(result);
         }
 

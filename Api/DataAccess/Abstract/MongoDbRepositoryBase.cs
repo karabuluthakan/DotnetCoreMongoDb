@@ -28,21 +28,26 @@ namespace Api.DataAccess.Abstract
             return predicate == null
                 ? Collection.AsQueryable()
                 : Collection.AsQueryable().Where(predicate);
+        }  
+
+        public virtual Task<T> Find(Expression<Func<T, bool>> predicate)
+        {
+            return Collection.Find(predicate).FirstOrDefaultAsync();
         }
 
-        public virtual Task<T> GetByIdAsync(string id)
+        public virtual Task<T> GetById(string id)
         {
             return Collection.Find(x => x.Id == id).FirstOrDefaultAsync();
         }
 
-        public virtual async Task<T> AddAsync(T entity)
+        public virtual async Task<T> Add(T entity)
         {
             var options = new InsertOneOptions {BypassDocumentValidation = false};
             await Collection.InsertOneAsync(entity, options);
             return entity;
         }
 
-        public virtual async Task<bool> AddRangeAsync(IEnumerable<T> entities)
+        public virtual async Task<bool> AddRange(IEnumerable<T> entities)
         {
             var options = new BulkWriteOptions {IsOrdered = false, BypassDocumentValidation = false};
             return (await Collection.BulkWriteAsync((IEnumerable<WriteModel<T>>) entities, options)).IsAcknowledged;

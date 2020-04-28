@@ -10,9 +10,10 @@ namespace Api.DataAccess.Abstract
     public interface IRepository<T, in TKey> where T : class, IEntity<TKey>, new() where TKey : IEquatable<TKey>
     {
         IQueryable<T> Get(Expression<Func<T, bool>> predicate = null);
-        Task<T> GetByIdAsync(TKey id);
-        Task<T> AddAsync(T entity);
-        Task<bool> AddRangeAsync(IEnumerable<T> entities);
+        Task<T> Find(Expression<Func<T, bool>> predicate);
+        Task<T> GetById(TKey id);
+        Task<T> Add(T entity);
+        Task<bool> AddRange(IEnumerable<T> entities);
         Task<T> Update(TKey id, T entity);
         Task<T> Update(T entity, Expression<Func<T, bool>> predicate);
         Task<T> Delete(T entity);
